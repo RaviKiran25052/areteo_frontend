@@ -1,367 +1,571 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import {
+    BookOpen, Users, MessageSquare, Award, ArrowRight, Sparkles,
+    Brain, GraduationCap, Coins, Zap, Globe, BarChart3, ChevronDown, Mail, MapPin, Crown,
+    TrendingUp, BookText, Languages, Camera, Code2, Music
+} from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { BookOpen, GraduationCap, MessageSquare, Users, ArrowRight, Gem, Coins, Sparkles, Globe, BrainCircuit, Zap, LockKeyhole, FileText, UserPlus } from 'lucide-react';
 
 const Home = () => {
     useEffect(() => {
         AOS.init({
             duration: 1000,
             once: false,
-            easing: 'ease-in-out-quad',
+            easing: 'ease-out-cubic',
         });
     }, []);
 
-    return (
-        <div className="bg-black text-white min-h-screen overflow-hidden">
-            {/* **Floating Particles Background** */}
-            <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                {[...Array(15)].map((_, i) => (
-                    <div
-                        key={i}
-                        className="absolute rounded-full bg-green-500/20 animate-float"
-                        style={{
-                            width: `${Math.random() * 10 + 5}px`,
-                            height: `${Math.random() * 10 + 5}px`,
-                            top: `${Math.random() * 100}%`,
-                            left: `${Math.random() * 100}%`,
-                            animationDuration: `${Math.random() * 20 + 10}s`,
-                            animationDelay: `${Math.random() * 5}s`,
-                        }}
-                    />
-                ))}
-            </div>
+    // Dummy data for top SkillCoin earners (Indian users)
+    const topEarners = [
+        {
+            id: 1,
+            name: "Priya Sharma",
+            skill: "Web Development",
+            coins: 2450,
+            location: "Mumbai, India",
+            image: "👩🏽"
+        },
+        {
+            id: 2,
+            name: "Rahul Kapoor",
+            skill: "Data Science",
+            coins: 2120,
+            location: "Bangalore, India",
+            image: "👨🏽"
+        },
+        {
+            id: 3,
+            name: "Ananya Patel",
+            skill: "Graphic Design",
+            coins: 1980,
+            location: "Delhi, India",
+            image: "👩🏽"
+        },
+        {
+            id: 4,
+            name: "Vikram Singh",
+            skill: "Digital Marketing",
+            coins: 1750,
+            location: "Hyderabad, India",
+            image: "👨🏽"
+        },
+        {
+            id: 5,
+            name: "Neha Gupta",
+            skill: "Photography",
+            coins: 1620,
+            location: "Chennai, India",
+            image: "👩🏽"
+        }
+    ];
 
-            {/* **Hero Section (Futuristic Glow Effect)** */}
-            <section className="relative h-screen flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    {/* **Animated Gradient Mesh Background** */}
-                    <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-green-900/50 via-black to-black"></div>
-                    {/* **Floating Grid Pattern** */}
-                    <div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-                    {/* **Subtle Glow** */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-green-500/10 blur-3xl"></div>
+    // Popular skills on the platform
+    const popularSkills = [
+        { name: "Web Development", icon: <Code2 className="text-blue-600" size={24} />, learners: 1250 },
+        { name: "Data Science", icon: <BarChart3 className="text-purple-600" size={24} />, learners: 980 },
+        { name: "Graphic Design", icon: <BookText className="text-pink-600" size={24} />, learners: 870 },
+        { name: "Digital Marketing", icon: <TrendingUp className="text-green-600" size={24} />, learners: 760 },
+        { name: "Photography", icon: <Camera className="text-yellow-600" size={24} />, learners: 650 },
+        { name: "Music Production", icon: <Music className="text-red-600" size={24} />, learners: 540 },
+        { name: "Language Learning", icon: <Languages className="text-indigo-600" size={24} />, learners: 1200 },
+        { name: "Mobile Development", icon: <Code2 className="text-teal-600" size={24} />, learners: 890 }
+    ];
+
+    return (
+        <div className="bg-white min-h-screen overflow-hidden">
+            {/* Hero Section */}
+            <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 to-white z-0"></div>
+
+                {/* Animated background elements */}
+                <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-green-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
+                <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-emerald-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+                <div className="absolute bottom-1/4 left-1/2 w-72 h-72 bg-lime-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+
+                <div className="container mx-auto px-4 sm:px-6 relative z-10">
+                    <div className="flex flex-col md:flex-row items-center">
+                        <div className="md:w-1/2 text-center md:text-left" data-aos="fade-right">
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-4 sm:mb-6">
+                                Teach, Learn, <span className="text-green-600">Grow</span>
+                            </h1>
+                            <p className="text-lg sm:text-xl text-gray-700 mb-6 sm:mb-8 max-w-lg mx-auto md:mx-0">
+                                Join India's premier peer-to-peer knowledge exchange platform where your skills become currency for growth.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+                                <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-lg shadow-green-200 text-sm sm:text-base">
+                                    Get Started <ArrowRight className="ml-2" size={18} />
+                                </button>
+                                <button className="bg-white hover:bg-gray-100 text-green-600 font-bold py-3 px-6 sm:px-8 rounded-full border border-green-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm sm:text-base">
+                                    Learn More
+                                </button>
+                            </div>
+                        </div>
+                        <div className="md:w-1/2 mt-8 sm:mt-10 md:mt-0" data-aos="fade-left" data-aos-delay="200">
+                            <div className="relative mx-4 sm:mx-0">
+                                <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-lg border border-green-100 transform rotate-1 sm:rotate-2 overflow-hidden">
+                                    <div className="flex items-center mb-3 sm:mb-4">
+                                        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-400 mr-2"></div>
+                                        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-400 mr-2"></div>
+                                        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-400"></div>
+                                        <div className="flex-1 text-center text-xs sm:text-sm font-medium">Skill Exchange Dashboard</div>
+                                    </div>
+
+                                    <div className="grid grid-cols-12 gap-3 sm:gap-4 mb-3 sm:mb-4">
+                                        <div className="col-span-8 bg-gray-100 rounded-lg sm:rounded-xl p-3 sm:p-4">
+                                            <div className="flex items-center mb-2 sm:mb-3">
+                                                <div className="bg-green-100 p-1 sm:p-2 rounded-full mr-2 sm:mr-3">
+                                                    <Brain className="text-green-600" size={16} />
+                                                </div>
+                                                <div>
+                                                    <h3 className="font-semibold text-sm sm:text-base">Skill Exchange</h3>
+                                                    <p className="text-xs text-gray-600">Teach photography, get coding lessons</p>
+                                                </div>
+                                            </div>
+                                            <div className="bg-white rounded-lg p-2 sm:p-3 text-xs sm:text-sm">
+                                                <div className="flex justify-between items-center mb-1 sm:mb-2">
+                                                    <span>Your Skills:</span>
+                                                    <span className="font-semibold">Photography, Design</span>
+                                                </div>
+                                                <div className="flex justify-between items-center">
+                                                    <span>Skills Wanted:</span>
+                                                    <span className="font-semibold">Web Development, Spanish</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="col-span-4 bg-green-50 rounded-lg sm:rounded-xl p-2 sm:p-4 flex flex-col justify-center">
+                                            <div className="flex items-center justify-center mb-1 sm:mb-2">
+                                                <Coins className="text-yellow-500" size={18} />
+                                            </div>
+                                            <div className="text-center">
+                                                <div className="font-bold text-base sm:text-lg">120</div>
+                                                <div className="text-xs text-gray-600">SkillCoins</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-green-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-100">
+                                        <div className="flex items-center justify-between mb-2 sm:mb-3">
+                                            <h3 className="font-semibold text-sm sm:text-base">New Match Found!</h3>
+                                            <div className="bg-green-600 text-white text-xs py-1 px-2 rounded-full">3 NEW</div>
+                                        </div>
+
+                                        <div className="space-y-2 sm:space-y-3">
+                                            <div className="flex items-center">
+                                                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-200 mr-2 sm:mr-3 flex items-center justify-center text-xs sm:text-sm">👨🏽</div>
+                                                <div className="flex-1">
+                                                    <div className="font-medium text-sm sm:text-base">Raj Mehta</div>
+                                                    <div className="text-xs text-gray-600">Web Developer • Spanish</div>
+                                                </div>
+                                                <button className="text-green-600 bg-white rounded-full p-1 shadow-sm">
+                                                    <MessageSquare size={14} />
+                                                </button>
+                                            </div>
+
+                                            <div className="flex items-center">
+                                                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-purple-200 mr-2 sm:mr-3 flex items-center justify-center text-xs sm:text-sm">👩🏽</div>
+                                                <div className="flex-1">
+                                                    <div className="font-medium text-sm sm:text-base">Sneha Reddy</div>
+                                                    <div className="text-xs text-gray-600">Data Scientist • Photography</div>
+                                                </div>
+                                                <button className="text-green-600 bg-white rounded-full p-1 shadow-sm">
+                                                    <MessageSquare size={14} />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="absolute -bottom-3 -left-3 sm:-bottom-5 sm:-left-5 bg-green-500 text-white text-xs font-bold py-1 sm:py-2 px-2 sm:px-4 rounded-full shadow-lg z-10 transform -rotate-6">
+                                    New Match!
+                                </div>
+
+                                <div className="absolute -top-3 -right-3 sm:-top-5 sm:-right-5 bg-white shadow-lg rounded-lg sm:rounded-xl p-2 sm:p-3 transform rotate-6 border border-green-100">
+                                    <div className="flex items-center">
+                                        <div className="bg-yellow-100 p-1 sm:p-2 rounded-full mr-1 sm:mr-2">
+                                            <Zap className="text-yellow-600" size={12} />
+                                        </div>
+                                        <div className="text-xs">
+                                            <div>+15 SkillCoins</div>
+                                            <div className="text-green-600">Earned today!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="container mx-auto px-6 relative z-10" data-aos="fade-up">
-                    <div className="text-center max-w-4xl mx-auto">
-                        {/* **Animated Tagline Badge** */}
-                        <div 
-                            className="inline-flex items-center bg-green-900/20 px-4 py-2 rounded-full mb-6 border border-green-500/30 hover:bg-green-900/40 transition-all duration-300"
-                            data-aos="fade-up" 
+                <div className="absolute bottom-5 sm:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                    <ChevronDown className="text-gray-400" size={24} />
+                </div>
+            </section>
+
+            {/* How It Works Section */}
+            <section className="py-16 sm:py-20 bg-gradient-to-b from-white to-green-50 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-white to-transparent z-10"></div>
+
+                <div className="container mx-auto px-4 sm:px-6 relative z-0">
+                    <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
+                        <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
+                            A seamless ecosystem designed for mutual growth and knowledge sharing
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 relative">
+                        {/* Connecting line */}
+                        <div className="hidden lg:block absolute top-20 left-1/8 right-1/8 h-1 bg-green-200 mx-16"></div>
+
+                        {/* Step 1 */}
+                        <div
+                            className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg border border-green-100 transform transition-all duration-300 hover:-translate-y-2 relative z-10"
+                            data-aos="fade-up"
                             data-aos-delay="100"
                         >
-                            <Sparkles className="w-5 h-5 mr-2 text-green-400 animate-pulse" />
-                            <span className="text-green-400 font-medium tracking-wider">THE FUTURE OF LEARNING</span>
+                            <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 sm:w-12 sm:h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold shadow-md text-sm sm:text-base">
+                                1
+                            </div>
+                            <div className="bg-green-100 p-3 sm:p-4 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-6 mx-auto">
+                                <BookOpen className="text-green-600" size={20} />
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Share Your Skills</h3>
+                            <p className="text-gray-700 text-sm sm:text-base text-center">
+                                Create a profile highlighting what you can teach and what you want to learn.
+                            </p>
                         </div>
 
-                        {/* **Main Headline (Gradient Text + Glow)** */}
-                        <h1 
-                            className="text-6xl md:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600 hover:text-green-500 transition-all duration-500"
+                        {/* Step 2 */}
+                        <div
+                            className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg border border-green-100 transform transition-all duration-300 hover:-translate-y-2 relative z-10"
                             data-aos="fade-up"
                             data-aos-delay="200"
                         >
-                            ARETEO
-                        </h1>
+                            <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 sm:w-12 sm:h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold shadow-md text-sm sm:text-base">
+                                2
+                            </div>
+                            <div className="bg-green-100 p-3 sm:p-4 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-6 mx-auto">
+                                <Users className="text-green-600" size={20} />
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Find Matches</h3>
+                            <p className="text-gray-700 text-sm sm:text-base text-center">
+                                Our algorithm connects you with perfect learning partners based on skills.
+                            </p>
+                        </div>
 
-                        {/* **Tagline (Typewriter Effect via CSS)** */}
-                        <p 
-                            className="text-3xl md:text-4xl font-light mb-8 text-gray-300 typewriter"
+                        {/* Step 3 */}
+                        <div
+                            className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg border border-green-100 transform transition-all duration-300 hover:-translate-y-2 relative z-10"
                             data-aos="fade-up"
                             data-aos-delay="300"
                         >
-                            Teach. Learn. Grow.
-                        </p>
+                            <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 sm:w-12 sm:h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold shadow-md text-sm sm:text-base">
+                                3
+                            </div>
+                            <div className="bg-green-100 p-3 sm:p-4 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-6 mx-auto">
+                                <Coins className="text-green-600" size={20} />
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Earn SkillCoins</h3>
+                            <p className="text-gray-700 text-sm sm:text-base text-center">
+                                Teach others and earn SkillCoins that you can spend on learning new skills.
+                            </p>
+                        </div>
 
-                        {/* **Dynamic Subheading** */}
-                        <p 
-                            className="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
+                        {/* Step 4 */}
+                        <div
+                            className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg border border-green-100 transform transition-all duration-300 hover:-translate-y-2 relative z-10"
                             data-aos="fade-up"
                             data-aos-delay="400"
                         >
-                            A <span className="text-green-400 font-medium">decentralized knowledge economy</span> where you earn <span className="text-yellow-300 font-medium">SkillCoins</span> by teaching and unlock premium learning.
-                        </p>
-
-                        {/* **Animated CTA Buttons** */}
-                        <div 
-                            className="flex flex-col sm:flex-row gap-4 justify-center"
-                            data-aos="fade-up"
-                            data-aos-delay="500"
-                        >
-                            <button className="px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 rounded-lg font-bold text-black hover:shadow-lg hover:shadow-green-500/40 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 flex items-center">
-                                Start Earning SkillCoins
-                                <Zap className="inline ml-2 w-5 h-5 animate-pulse" />
-                            </button>
-                            <button className="px-8 py-4 border border-green-500/50 rounded-lg font-medium hover:bg-green-900/30 transition-all duration-300 flex items-center">
-                                <UserPlus className="w-5 h-5 mr-2" />
-                                Join the Community
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* **Animated Scroll Indicator (Bouncing Arrow)** */}
-                <div 
-                    className="absolute bottom-10 left-0 w-full flex justify-center z-10"
-                    data-aos="fade-up"
-                    data-aos-delay="700"
-                >
-                    <div className="animate-bounce">
-                        <div className="w-8 h-14 border-2 border-green-500 rounded-full flex justify-center">
-                            <div className="w-1 h-3 bg-green-500 rounded-full mt-2 animate-pulse"></div>
+                            <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 sm:w-12 sm:h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold shadow-md text-sm sm:text-base">
+                                4
+                            </div>
+                            <div className="bg-green-100 p-3 sm:p-4 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-6 mx-auto">
+                                <Award className="text-green-600" size={20} />
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Grow Together</h3>
+                            <p className="text-gray-700 text-sm sm:text-base text-center">
+                                Build your knowledge network and achieve your learning goals with the community.
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* **SkillCoins Floating Animation Section** */}
-            <section className="py-20 relative overflow-hidden">
-                <div className="container mx-auto px-6 relative">
-                    <div className="text-center mb-16" data-aos="fade-up">
-                        <h2 className="text-4xl font-bold mb-4">
-                            <span className="text-green-500">Trade Knowledge</span>, Earn Rewards
-                        </h2>
-                        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                            Turn your expertise into <span className="text-yellow-300 font-medium">SkillCoins</span> and access a world of learning.
+            {/* Top SkillCoin Earners Section */}
+            <section className="py-16 sm:py-20 bg-white">
+                <div className="container mx-auto px-4 sm:px-6">
+                    <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Top SkillCoin Earners</h2>
+                        <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
+                            Our most active teachers and contributors from across India
                         </p>
                     </div>
 
-                    {/* **Floating 3D Card Grid** */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {/* **Card 1 - Teach & Earn** */}
-                        <div 
-                            className="bg-gradient-to-br from-gray-900/50 to-gray-900/10 p-8 rounded-2xl border border-gray-800 hover:border-green-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-green-500/20 hover:-translate-y-2"
-                            data-aos="fade-up"
-                            data-aos-delay="100"
-                        >
-                            <div className="w-16 h-16 bg-green-900/30 rounded-xl flex items-center justify-center mb-6 border border-green-500/30 glow-box">
-                                <GraduationCap className="w-8 h-8 text-green-400" />
-                            </div>
-                            <h3 className="text-2xl font-bold mb-4">Teach & Earn</h3>
-                            <p className="text-gray-400 mb-4">
-                                Host sessions, share PDFs, or mentor peers to earn <span className="text-yellow-300">SkillCoins</span>.
-                            </p>
-                            <div className="flex justify-center mt-6">
-                                <div className="relative">
-                                    <Coins className="w-12 h-12 text-yellow-400 animate-float-coin" />
-                                    <Coins className="w-10 h-10 text-yellow-300 absolute -top-2 -right-4 opacity-70 animate-float-coin-delay" />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* **Card 2 - Learn Anything** */}
-                        <div 
-                            className="bg-gradient-to-br from-gray-900/50 to-gray-900/10 p-8 rounded-2xl border border-gray-800 hover:border-green-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-green-500/20 hover:-translate-y-2"
-                            data-aos="fade-up"
-                            data-aos-delay="200"
-                        >
-                            <div className="w-16 h-16 bg-green-900/30 rounded-xl flex items-center justify-center mb-6 border border-green-500/30 glow-box">
-                                <BookOpen className="w-8 h-8 text-green-400" />
-                            </div>
-                            <h3 className="text-2xl font-bold mb-4">Learn Anything</h3>
-                            <p className="text-gray-400 mb-4">
-                                Spend <span className="text-yellow-300">SkillCoins</span> to access courses, 1:1 tutoring, and exclusive resources.
-                            </p>
-                            <div className="flex justify-center mt-6">
-                                <div className="relative">
-                                    <FileText className="w-12 h-12 text-green-400" />
-                                    <LockKeyhole className="w-6 h-6 text-green-300 absolute -bottom-2 -right-2" />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* **Card 3 - AI-Powered Matchmaking** */}
-                        <div 
-                            className="bg-gradient-to-br from-gray-900/50 to-gray-900/10 p-8 rounded-2xl border border-gray-800 hover:border-green-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-green-500/20 hover:-translate-y-2"
-                            data-aos="fade-up"
-                            data-aos-delay="300"
-                        >
-                            <div className="w-16 h-16 bg-green-900/30 rounded-xl flex items-center justify-center mb-6 border border-green-500/30 glow-box">
-                                <BrainCircuit className="w-8 h-8 text-green-400" />
-                            </div>
-                            <h3 className="text-2xl font-bold mb-4">Smart Matching</h3>
-                            <p className="text-gray-400 mb-4">
-                                Our AI connects you with ideal learning partners based on skills and goals.
-                            </p>
-                            <div className="flex justify-center mt-6">
-                                <div className="relative">
-                                    <Users className="w-12 h-12 text-purple-400" />
-                                    <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                                        <Zap className="w-3 h-3 text-black" />
+                    <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 mb-12 sm:mb-16">
+                        {topEarners.map((user, index) => (
+                            <div
+                                key={user.id}
+                                className="bg-gradient-to-b from-white to-green-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-green-100 transform transition-all duration-300 hover:-translate-y-2 text-center"
+                                data-aos="fade-up"
+                                data-aos-delay={index * 100}
+                            >
+                                <div className="flex justify-center mb-3 sm:mb-4">
+                                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-green-100 flex items-center justify-center text-xl sm:text-2xl">
+                                        {user.image}
                                     </div>
+                                    {index === 0 && (
+                                        <div className="relative -left-3 -top-1 sm:-left-4 sm:-top-2 bg-yellow-400 rounded-full p-1 h-fit">
+                                            <Crown className="text-white" size={12} />
+                                        </div>
+                                    )}
                                 </div>
+                                <h3 className="font-bold text-sm sm:text-base lg:text-lg mb-1">{user.name}</h3>
+                                <p className="text-green-600 text-xs sm:text-sm mb-2">{user.skill}</p>
+                                <div className="flex items-center justify-center mb-2 sm:mb-3">
+                                    <Coins className="text-yellow-500 mr-1" size={14} />
+                                    <span className="font-semibold text-sm sm:text-base">{user.coins}</span>
+                                </div>
+                                <p className="text-gray-500 text-xs">{user.location}</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* **How It Works (Animated Timeline)** */}
-            <section className="py-20 bg-gradient-to-b from-black to-gray-900/50 relative overflow-hidden">
-                <div className="absolute inset-0 z-0 opacity-10">
-                    <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-green-500 filter blur-3xl"></div>
-                </div>
-
-                <div className="container mx-auto px-6 relative">
-                    <div className="text-center mb-20" data-aos="fade-up">
-                        <h2 className="text-4xl font-bold mb-4">
-                            <span className="text-green-500">How</span> Areteo Works
-                        </h2>
-                        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                            A seamless peer-to-peer learning economy in 3 steps.
-                        </p>
+                        ))}
                     </div>
 
-                    <div className="relative">
-                        {/* **Animated Timeline Line** */}
-                        <div className="hidden lg:block absolute left-1/2 top-0 h-full w-1 bg-gradient-to-b from-green-500/30 via-green-500 to-green-500/30"></div>
-
-                        {/* **Step 1** */}
-                        <div className="relative mb-16 lg:mb-32" data-aos="fade-right">
-                            <div className="lg:flex items-center">
-                                <div className="lg:w-1/2 lg:pr-20 mb-10 lg:mb-0 text-right">
-                                    <h3 className="text-3xl font-bold mb-4">1. Set Up Your Skills Profile</h3>
-                                    <p className="text-gray-400">
-                                        List what you can teach and what you want to learn. Our AI analyzes your expertise.
-                                    </p>
-                                </div>
-                                <div className="lg:w-1/2 lg:pl-20 relative">
-                                    <div className="bg-gradient-to-br from-gray-900/50 to-gray-900/10 p-8 rounded-2xl border border-gray-800 relative overflow-hidden">
-                                        <div className="absolute -top-4 -right-4 w-24 h-24 bg-green-500/10 rounded-full blur-xl"></div>
-                                        <div className="flex items-center mb-6">
-                                            <div className="w-16 h-16 bg-green-900/30 rounded-xl flex items-center justify-center mr-6 border border-green-500/30">
-                                                <UserPlus className="w-8 h-8 text-green-400" />
-                                            </div>
-                                            <div>
-                                                <h4 className="text-xl font-bold">Profile Strength: 85%</h4>
-                                                <div className="w-full bg-gray-800 rounded-full h-2 mt-2">
-                                                    <div className="bg-green-500 h-2 rounded-full" style={{ width: '85%' }}></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="flex flex-wrap gap-2">
-                                            <span className="px-3 py-1 bg-green-900/30 text-green-400 rounded-full text-sm">JavaScript</span>
-                                            <span className="px-3 py-1 bg-green-900/30 text-green-400 rounded-full text-sm">UI/UX Design</span>
-                                            <span className="px-3 py-1 bg-green-900/30 text-green-400 rounded-full text-sm">Photography</span>
-                                            <span className="px-3 py-1 bg-gray-800 text-gray-400 rounded-full text-sm">+3 more</span>
-                                        </div>
-                                    </div>
-                                    <div className="absolute -left-4 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-green-500 rounded-full border-4 border-black hidden lg:block"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* **Step 2** */}
-                        <div className="relative mb-16 lg:mb-32" data-aos="fade-left" data-aos-delay="200">
-                            <div className="lg:flex items-center flex-row-reverse">
-                                <div className="lg:w-1/2 lg:pl-20 mb-10 lg:mb-0 text-left">
-                                    <h3 className="text-3xl font-bold mb-4">2. Connect & Exchange</h3>
-                                    <p className="text-gray-400">
-                                        Chat with matched peers, schedule sessions, and start exchanging knowledge.
-                                    </p>
-                                </div>
-                                <div className="lg:w-1/2 lg:pr-20 relative">
-                                    <div className="bg-gradient-to-br from-gray-900/50 to-gray-900/10 p-8 rounded-2xl border border-gray-800 relative overflow-hidden">
-                                        <div className="absolute -top-4 -left-4 w-24 h-24 bg-purple-500/10 rounded-full blur-xl"></div>
-                                        <div className="flex items-center mb-6">
-                                            <div className="w-16 h-16 bg-purple-900/30 rounded-xl flex items-center justify-center mr-6 border border-purple-500/30">
-                                                <MessageSquare className="w-8 h-8 text-purple-400" />
-                                            </div>
-                                            <div>
-                                                <h4 className="text-xl font-bold">Active Conversations</h4>
-                                                <p className="text-gray-400">5 matches this week</p>
-                                            </div>
-                                        </div>
-                                        <div className="space-y-3">
-                                            <div className="flex items-center">
-                                                <div className="w-10 h-10 rounded-full bg-gray-700 mr-3 overflow-hidden">
-                                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" className="w-full h-full object-cover" />
-                                                </div>
-                                                <div>
-                                                    <p className="font-medium">Sarah (UI Design)</p>
-                                                    <p className="text-sm text-gray-500">"Can you review my portfolio?"</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-center">
-                                                <div className="w-10 h-10 rounded-full bg-gray-700 mr-3 overflow-hidden">
-                                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" className="w-full h-full object-cover" />
-                                                </div>
-                                                <div>
-                                                    <p className="font-medium">David (Python)</p>
-                                                    <p className="text-sm text-gray-500">"Let's schedule a session!"</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-purple-500 rounded-full border-4 border-black hidden lg:block"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* **Step 3** */}
-                        <div className="relative" data-aos="fade-right" data-aos-delay="400">
-                            <div className="lg:flex items-center">
-                                <div className="lg:w-1/2 lg:pr-20 mb-10 lg:mb-0 text-right">
-                                    <h3 className="text-3xl font-bold mb-4">3. Earn & Spend SkillCoins</h3>
-                                    <p className="text-gray-400">
-                                        Get rewarded for teaching and unlock premium learning resources.
-                                    </p>
-                                </div>
-                                <div className="lg:w-1/2 lg:pl-20 relative">
-                                    <div className="bg-gradient-to-br from-gray-900/50 to-gray-900/10 p-8 rounded-2xl border border-gray-800 relative overflow-hidden">
-                                        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-yellow-500/10 rounded-full blur-xl"></div>
-                                        <div className="flex justify-between items-center mb-6">
-                                            <div className="flex items-center">
-                                                <div className="w-16 h-16 bg-yellow-900/30 rounded-xl flex items-center justify-center mr-6 border border-yellow-500/30">
-                                                    <Coins className="w-8 h-8 text-yellow-400" />
-                                                </div>
-                                                <div>
-                                                    <h4 className="text-xl font-bold">Your Balance</h4>
-                                                    <p className="text-2xl text-yellow-300 font-bold">1,250 <span className="text-lg">SkillCoins</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
-                                                <p className="text-sm text-gray-400">Earned</p>
-                                                <p className="text-green-400 font-bold">+450 SC</p>
-                                            </div>
-                                            <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
-                                                <p className="text-sm text-gray-400">Spent</p>
-                                                <p className="text-red-400 font-bold">-200 SC</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="absolute -left-4 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-yellow-500 rounded-full border-4 border-black hidden lg:block"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* **Final CTA (Glowing Gradient Section)** */}
-            <section className="py-32 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-900/10 via-black to-purple-900/10 opacity-50"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-64 rounded-full bg-green-500 filter blur-3xl opacity-10"></div>
-                
-                <div className="container mx-auto px-6 relative">
-                    <div className="max-w-4xl mx-auto text-center" data-aos="zoom-in">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                            Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-purple-400">Join the Future</span> of Learning?
-                        </h2>
-                        <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-                            Areteo is revolutionizing how knowledge is shared. Be part of the movement.
-                        </p>
-                        <button className="px-10 py-5 bg-gradient-to-r from-green-500 to-purple-500 rounded-lg font-bold text-white hover:shadow-lg hover:shadow-green-500/30 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 text-lg group">
-                            <span className="relative z-10 flex items-center justify-center">
-                                Get Started for Free
-                                <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform" />
-                            </span>
+                    <div className="text-center" data-aos="fade-up">
+                        <button className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 sm:py-3 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center justify-center mx-auto text-sm sm:text-base">
+                            View Leaderboard <TrendingUp className="ml-2" size={18} />
                         </button>
                     </div>
                 </div>
             </section>
+
+            {/* Popular Skills Section */}
+            <section className="py-16 sm:py-20 bg-green-50">
+                <div className="container mx-auto px-4 sm:px-6">
+                    <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Popular Skills on Areteo</h2>
+                        <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
+                            Discover the most sought-after skills in our community
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                        {popularSkills.map((skill, index) => (
+                            <div
+                                key={index}
+                                className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-green-100 transform transition-all duration-300 hover:-translate-y-2"
+                                data-aos="fade-up"
+                                data-aos-delay={index * 100}
+                            >
+                                <div className="flex items-center mb-3 sm:mb-4">
+                                    <div className="bg-green-100 p-2 sm:p-3 rounded-lg sm:rounded-xl mr-3 sm:mr-4">
+                                        {skill.icon}
+                                    </div>
+                                    <h3 className="font-bold text-sm sm:text-base lg:text-lg">{skill.name}</h3>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                    <span className="text-gray-600 text-xs sm:text-sm">{skill.learners.toLocaleString()} learners</span>
+                                    <button className="text-green-600 text-xs sm:text-sm font-medium">Explore</button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Benefits Section */}
+            <section className="py-16 sm:py-20 bg-white">
+                <div className="container mx-auto px-4 sm:px-6">
+                    <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Why Choose Areteo?</h2>
+                        <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
+                            Experience the advantages of our peer-to-peer learning platform
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                        <div className="text-center" data-aos="fade-up" data-aos-delay="100">
+                            <div className="bg-green-100 p-3 sm:p-4 rounded-xl sm:rounded-2xl w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-4 sm:mb-6 mx-auto">
+                                <Coins className="text-green-600" size={28} />
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Earn While You Learn</h3>
+                            <p className="text-gray-700 text-sm sm:text-base">
+                                Monetize your expertise by teaching others and use your earnings to learn new skills.
+                            </p>
+                        </div>
+
+                        <div className="text-center" data-aos="fade-up" data-aos-delay="200">
+                            <div className="bg-green-100 p-3 sm:p-4 rounded-xl sm:rounded-2xl w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-4 sm:mb-6 mx-auto">
+                                <Globe className="text-green-600" size={28} />
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Learn From Peers</h3>
+                            <p className="text-gray-700 text-sm sm:text-base">
+                                Connect with fellow learners who understand your journey and can explain concepts in relatable ways.
+                            </p>
+                        </div>
+
+                        <div className="text-center" data-aos="fade-up" data-aos-delay="300">
+                            <div className="bg-green-100 p-3 sm:p-4 rounded-xl sm:rounded-2xl w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-4 sm:mb-6 mx-auto">
+                                <Users className="text-green-600" size={28} />
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Build Your Network</h3>
+                            <p className="text-gray-700 text-sm sm:text-base">
+                                Expand your professional network while learning from diverse experts across India.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA Section */}
+            <section className="py-16 sm:py-20 bg-gradient-to-r from-green-500 to-emerald-600 text-white relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-full opacity-10">
+                    <div className="absolute top-20 left-20 w-72 h-72 bg-white rounded-full mix-blend-soft-light filter blur-xl animate-blob"></div>
+                    <div className="absolute top-40 right-20 w-72 h-72 bg-white rounded-full mix-blend-soft-light filter blur-xl animate-blob animation-delay-2000"></div>
+                    <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-white rounded-full mix-blend-soft-light filter blur-xl animate-blob animation-delay-4000"></div>
+                </div>
+
+                <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
+                    <div data-aos="fade-up">
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6">Ready to Start Your Learning Journey?</h2>
+                        <p className="text-lg sm:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto">
+                            Join thousands of users across India who are already exchanging knowledge and growing together on Areteo.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                            <button className="bg-white text-green-600 hover:bg-gray-100 font-bold py-3 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-lg text-sm sm:text-base">
+                                Sign Up Now <Sparkles className="ml-2" size={18} />
+                            </button>
+                            <button className="bg-transparent hover:bg-green-700 text-white font-bold py-3 px-6 sm:px-8 rounded-full border border-white transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
+                                Take a Tour
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Footer */}
+            <footer className="bg-gray-900 text-white py-8 sm:py-12">
+                <div className="container mx-auto px-4 sm:px-6">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
+                        <div>
+                            <div className="flex items-center mb-3 sm:mb-4">
+                                <GraduationCap className="text-green-400 mr-2" size={24} />
+                                <span className="text-xl font-bold">Areteo</span>
+                            </div>
+                            <p className="text-gray-400 mb-3 sm:mb-4 text-sm sm:text-base">Teach, Learn, Grow together</p>
+                            <div className="flex space-x-3 sm:space-x-4">
+                                <a href="/" className="text-gray-400 hover:text-white transition-colors">
+                                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm">
+                                        <i className="fab fa-twitter"></i>
+                                    </div>
+                                </a>
+                                <a href="/" className="text-gray-400 hover:text-white transition-colors">
+                                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm">
+                                        <i className="fab fa-facebook-f"></i>
+                                    </div>
+                                </a>
+                                <a href="/" className="text-gray-400 hover:text-white transition-colors">
+                                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm">
+                                        <i className="fab fa-instagram"></i>
+                                    </div>
+                                </a>
+                                <a href="/" className="text-gray-400 hover:text-white transition-colors">
+                                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm">
+                                        <i className="fab fa-linkedin-in"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 className="text-lg font-semibold mb-3 sm:mb-4">Platform</h3>
+                            <ul className="space-y-2">
+                                <li><a href="/" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">How it Works</a></li>
+                                <li><a href="/" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Features</a></li>
+                                <li><a href="/" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Pricing</a></li>
+                                <li><a href="/" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Testimonials</a></li>
+                                <li><a href="/" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">FAQ</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 className="text-lg font-semibold mb-3 sm:mb-4">Resources</h3>
+                            <ul className="space-y-2">
+                                <li><a href="/" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Blog</a></li>
+                                <li><a href="/" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Tutorials</a></li>
+                                <li><a href="/" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Help Center</a></li>
+                                <li><a href="/" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Community</a></li>
+                                <li><a href="/" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">SkillCoin Guide</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 className="text-lg font-semibold mb-3 sm:mb-4">Contact</h3>
+                            <ul className="space-y-2">
+                                <li className="flex items-center text-gray-400 text-sm sm:text-base">
+                                    <Mail className="mr-2" size={14} />
+                                    <span>support@areteo.com</span>
+                                </li>
+                                <li className="flex items-center text-gray-400 text-sm sm:text-base">
+                                    <MapPin className="mr-2" size={14} />
+                                    <span>Bangalore, India</span>
+                                </li>
+                            </ul>
+                            <div className="mt-3 sm:mt-4">
+                                <h4 className="text-sm font-semibold mb-2">Subscribe to our newsletter</h4>
+                                <div className="flex">
+                                    <input
+                                        type="email"
+                                        placeholder="Your email"
+                                        className="bg-gray-800 text-white py-2 px-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 w-full text-sm"
+                                    />
+                                    <button className="bg-green-600 hover:bg-green-700 py-2 px-3 rounded-r-lg">
+                                        <Mail size={14} />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="border-t border-gray-800 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center">
+                        <p className="text-gray-500 text-xs sm:text-sm mb-3 md:mb-0">© {new Date().getFullYear()} Areteo. All rights reserved.</p>
+                        <div className="flex space-x-4 sm:space-x-6">
+                            <a href="/" className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors">Terms of Service</a>
+                            <a href="/" className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors">Privacy Policy</a>
+                            <a href="/" className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <style jsx>{`
+                @keyframes blob {
+                    0% {
+                        transform: translate(0px, 0px) scale(1);
+                    }
+                    33% {
+                        transform: translate(30px, -50px) scale(1.1);
+                    }
+                    66% {
+                        transform: translate(-20px, 20px) scale(0.9);
+                    }
+                    100% {
+                        transform: translate(0px, 0px) scale(1);
+                }
+                .animate-blob {
+                    animation: blob 7s infinite;
+                }
+                .animation-delay-2000 {
+                    animation-delay: 2s;
+                }
+                .animation-delay-4000 {
+                    animation-delay: 4s;
+                }
+            `}</style>
+
+            {/* Add Font Awesome for social icons */}
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
         </div>
     );
 };
