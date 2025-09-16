@@ -72,7 +72,7 @@ const AuthModal = ({ isOpen, onClose }) => {
 			}
 			// Validate file size (5MB limit)
 			if (file.size > 5 * 1024 * 1024) {
-				toast.error('File size must be less than 5MB');
+				toast.warning('File size must be less than 5MB');
 				return;
 			}
 			setProfilePic(file);
